@@ -1,0 +1,85 @@
+In Java, an interface is a reference type, similar to a class, but it is used to specify methods that a class must implement without providing their actual implementation. An interface defines a contract that any class implementing it must follow.
+
+
+Key Characteristics of an Interface :
+1. Method Declaration Only: An interface only contains method signatures (abstract methods). The implementing class must provide the method definitions.
+
+Example:
+**java code**
+public interface Vehicle {
+    void start();
+    void stop();
+}
+
+2. No Fields (Except Constants): Interfaces can't have instance fields, but they can contain constants (variables declared with public static final).
+3. Multiple Inheritance: A class can implement multiple interfaces, allowing for a form of multiple inheritance, which is not possible with regular classes in Java.
+4. Default and Static Methods: Since Java 8, interfaces can also include default and static methods with implementations.
+
+Example of a default method :
+**java code**
+public interface Vehicle {
+    void start();
+    void stop();
+    
+    default void honk() {
+        System.out.println("Honking...");
+    }
+}
+
+
+Why Are Interfaces Used ?
+1. Abstraction: Interfaces provide a way to define what a class must do but not how it should do it. This allows developers to create more flexible and reusable code.
+2. Multiple Inheritance: A class can implement multiple interfaces, enabling a form of multiple inheritance, which is not allowed with classes (where you can only extend one class).
+
+Example :
+**java code**
+public class Car implements Vehicle, Engine {
+    @Override
+    public void start() {
+        // Implementation here
+    }
+
+    @Override
+    public void stop() {
+        // Implementation here
+    }
+}
+
+3. Loose Coupling: Interfaces help reduce dependencies between classes. By programming to an interface rather than a concrete implementation, you can more easily switch between different implementations of the same interface without modifying the consuming code.
+Example :
+**java code**
+public class Car implements Vehicle {
+    @Override
+    public void start() {
+        System.out.println("Car started");
+    }
+
+    @Override
+    public void stop() {
+        System.out.println("Car stopped");
+    }
+}
+
+public class Motorcycle implements Vehicle {
+    @Override
+    public void start() {
+        System.out.println("Motorcycle started");
+    }
+
+    @Override
+    public void stop() {
+        System.out.println("Motorcycle stopped");
+    }
+}
+
+// The consuming code can use either a Car or Motorcycle
+Vehicle myVehicle = new Car(); // or new Motorcycle();
+myVehicle.start();
+
+
+4. Polymorphism: Interfaces allow for polymorphic behavior, meaning the same interface can be used to refer to objects of different implementing classes.
+
+
+In summary, interfaces are used to define a contract for what a class should do, enabling abstraction, flexibility, and code reusability, all while promoting loose coupling and polymorphism.
+
+
