@@ -1,0 +1,109 @@
+A **REST API (Representational State Transfer Application Programming Interface)** is an architectural style and set of principles for designing networked applications, often used to interact with web services. 
+It allows different systems to communicate over the web, typically using the HTTP protocol.
+
+### Key Concepts of REST API
+
+1. **Client-Server Architecture**:
+   - REST divides the system into two main components: a client and a server.
+   - The **client** is responsible for user interaction and requesting resources.
+   - The **server** is responsible for handling the requests, processing them, and sending back the appropriate responses.
+
+2. **Stateless**:
+   - Every request from a client to a server must contain all the information the server needs to fulfill the request.
+   - The server does not store any client context between requests. Each interaction is independent.
+
+3. **Resources and URIs**:
+   - In REST, data and functionality are considered **resources**.
+   - Each resource is identified by a **Uniform Resource Identifier (URI)**, which is a unique path or endpoint.
+
+   For example, an endpoint might look like:
+   ```
+   https://api.example.com/users/123
+   ```
+   Here, `/users/123` identifies a specific user resource.
+
+4. **HTTP Methods**:
+   RESTful APIs use standard HTTP methods to perform operations on resources. The most commonly used methods are:
+   - **GET**: Retrieve data from the server (read-only).
+   - **POST**: Submit data to the server, often to create a new resource.
+   - **PUT**: Update an existing resource or create a resource if it doesn't exist.
+   - **DELETE**: Remove a resource from the server.
+
+   Example of how HTTP methods map to actions:
+   - `GET /users` → Get a list of users.
+   - `GET /users/123` → Get a specific user (ID 123).
+   - `POST /users` → Create a new user.
+   - `PUT /users/123` → Update the information of user 123.
+   - `DELETE /users/123` → Delete user 123.
+
+5. **Stateless Communication**:
+   - Every request from a client to the server is independent. There is no stored session information on the server between requests.
+
+6. **Data Formats (Usually JSON)**:
+   - REST APIs often use **JSON (JavaScript Object Notation)** to structure data because it is lightweight and easy to read.
+   - XML is also used, but JSON is more common due to its simplicity and efficiency.
+
+   Example of JSON response:
+   ```json
+   {
+       "id": 123,
+       "name": "John Doe",
+       "email": "johndoe@example.com"
+   }
+   ```
+
+### Why Use REST APIs?
+
+1. **Simplicity and Scalability**:
+   - REST APIs are simple to implement, easy to understand, and stateless, which allows scalability in distributed systems.
+
+2. **Platform Independence**:
+   - REST APIs can be consumed by any client (web browsers, mobile apps, etc.) that can make HTTP requests, regardless of the programming language.
+
+3. **Loose Coupling**:
+   - The client and server are decoupled; they communicate via a standard protocol (HTTP) and exchange data in a common format (like JSON). This separation makes it easier to maintain and evolve the API.
+
+4. **Cacheability**:
+   - RESTful APIs can leverage HTTP caching mechanisms to improve performance by reducing the number of requests to the server.
+
+5. **Uniform Interface**:
+   - By using standard HTTP methods and stateless communication, REST APIs provide a consistent interface, making it easier to interact with them.
+
+### Example of a REST API Request
+
+To retrieve a list of users, a client might send the following request:
+
+```http
+GET /users HTTP/1.1
+Host: api.example.com
+Accept: application/json
+```
+
+The server might respond with:
+
+```json
+[
+    {
+        "id": 1,
+        "name": "Alice",
+        "email": "alice@example.com"
+    },
+    {
+        "id": 2,
+        "name": "Bob",
+        "email": "bob@example.com"
+    }
+]
+```
+
+In this example, the client requested all users, and the server responded with a JSON array of user objects.
+
+### REST vs SOAP
+
+- **REST** is more lightweight and simple compared to **SOAP (Simple Object Access Protocol)**, which is an older web service protocol that uses XML for messaging and requires more complexity in its setup.
+- REST APIs are preferred in modern applications because they are more flexible, easier to use, and have lower overhead compared to SOAP.
+
+### Summary
+
+A **REST API** is a web service that follows the principles of the REST architectural style, allowing systems to interact with each other over the internet by making HTTP requests. 
+It’s widely used due to its simplicity, scalability, and platform independence.
