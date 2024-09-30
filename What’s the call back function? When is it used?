@@ -1,0 +1,90 @@
+In Java, a **callback function** is a mechanism where a method (or function) is passed as an argument to another method, allowing that method to call the passed-in function at a later time. 
+This concept is more commonly associated with languages like JavaScript, but it can also be implemented in Java using techniques such as interfaces, lambda expressions, or functional interfaces.
+
+### How Callbacks Work in Java
+In Java, you typically implement callback functionality using:
+1. **Interfaces**: Define an interface with a method that acts as a callback.
+2. **Anonymous Classes**: Implement an interface and pass it to a method.
+3. **Lambda Expressions**: Since Java 8, lambda expressions can simplify passing callbacks.
+4. **Functional Interfaces**: Java 8 introduced functional interfaces (interfaces with a single abstract method), which work well with lambda expressions for callbacks.
+
+### Example of a Callback using an Interface
+1. **Step 1**: Define an interface for the callback.
+   ```java
+   public interface Callback {
+       void onComplete(String result);
+   }
+   ```
+
+2. **Step 2**: Create a class that uses the callback.
+   ```java
+   public class Worker {
+       public void doWork(Callback callback) {
+           // Simulate some work with a result
+           String result = "Task Completed";
+           
+           // Call the callback method
+           callback.onComplete(result);
+       }
+   }
+   ```
+
+3. **Step 3**: Implement and use the callback.
+   ```java
+   public class Main {
+       public static void main(String[] args) {
+           Worker worker = new Worker();
+           
+           // Pass an anonymous class as the callback
+           worker.doWork(new Callback() {
+               @Override
+               public void onComplete(String result) {
+                   System.out.println(result);
+               }
+           });
+       }
+   }
+   ```
+   In this example:
+   - An interface `Callback` defines the callback method `onComplete`.
+   - `Worker` class has a `doWork` method that accepts a `Callback` object and calls `onComplete`.
+   - The `Main` class implements the callback using an anonymous class and passes it to `doWork`.
+
+### Example of a Callback using Lambda Expression (Java 8 and Later)
+With Java 8, you can use lambda expressions to make callbacks more concise, especially when using functional interfaces.
+
+1. **Step 1**: Define a functional interface (an interface with a single abstract method).
+   ```java
+   @FunctionalInterface
+   public interface Callback {
+       void onComplete(String result);
+   }
+   ```
+
+2. **Step 2**: Use the callback with a lambda expression.
+   ```java
+   public class Main {
+       public static void main(String[] args) {
+           Worker worker = new Worker();
+           
+           // Use a lambda expression as the callback
+           worker.doWork(result -> System.out.println(result));
+       }
+   }
+   ```
+
+### When to Use Callbacks
+Callbacks are often used in the following scenarios:
+1. **Asynchronous Programming**: When a task takes a long time to complete, you can use a callback to be notified when the task is done. For example, reading a file, making network requests, or performing database operations.
+   
+2. **Event Handling**: In GUI applications or event-driven systems (like button clicks), callbacks are used to handle events. For example, in Android development, you might pass a callback method to handle a button press.
+
+3. **Decoupling Code**: Callbacks help in decoupling classes, making the code more modular and reusable. One class can trigger an action in another class without being tightly coupled to its implementation.
+
+4. **Customizable Behavior**: Callbacks allow customizing the behavior of a method. For example, a sorting algorithm might accept a callback to compare elements in different ways.
+
+### Summary
+- A **callback function** in Java is a mechanism for passing a method (or function) to another method, allowing it to be called at a later time.
+- In Java, callbacks are typically implemented using interfaces, anonymous classes, or lambda expressions.
+- They are commonly used in scenarios involving asynchronous tasks, event handling, decoupling of code, and when you need to provide customizable behavior.
+- With Java 8's functional interfaces and lambda expressions, implementing callbacks has become more concise and readable.
